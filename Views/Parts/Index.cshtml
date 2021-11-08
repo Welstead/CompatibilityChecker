@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CompatibilityChecker.Models.Part>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Your Basket</h2>
+
+<p>
+    <a asp-controller="Home" asp-action="Index">Continue Shopping</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PartName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartSpec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartSpec)
+            </td>
+            <td>
+                £@Html.DisplayFor(modelItem => item.PartPrice)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.PartId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PartId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<h3>Total: </h3>
